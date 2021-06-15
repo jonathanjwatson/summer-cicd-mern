@@ -11,6 +11,8 @@ app.use(express.json());
 
 app.use(express.static("client/build"));
 
+console.log("Attempting to bypass GitHub Actions")
+
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/summer-cicd-mern", {
     useNewUrlParser: true,
