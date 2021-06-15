@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+console.log("The server is running");
+
 app.use(express.static("client/build"));
 
 mongoose
