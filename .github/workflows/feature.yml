@@ -29,6 +29,6 @@ jobs:
           eslintArgs: "--ignore-path=.gitignore --quiet"
           extensions: "js,jsx"
           annotations: true
-        run: npm run lint
+      - run: npm run lint
       # - run: npm run build --if-present
       # - run: npm test
