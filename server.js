@@ -5,7 +5,7 @@ const app = express();
 const routes = require("./routes");
 
 const PORT = process.env.PORT || 3001;
-
+console.log("Hello");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
