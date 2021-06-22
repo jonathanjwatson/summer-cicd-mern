@@ -11,6 +11,8 @@ app.use(express.json());
 
 app.use(express.static("client/build"));
 
+console.log("will this trigger github actions?");
+
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/summer-cicd-mern", {
     useNewUrlParser: true,
