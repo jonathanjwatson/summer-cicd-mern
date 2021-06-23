@@ -1,4 +1,3 @@
-const mocha = require("mocha");
 const chai = require("chai");
 const mongoose = require("mongoose");
 const sinon = require("sinon");
@@ -11,18 +10,27 @@ chai.use(sinonChai);
 
 describe("restaurantController", () => {
   describe("findById", () => {
+    const sandbox = sinon.createSandbox();
+    afterEach(function () {
+      sinon.restore();
+      sandbox.restore();
+    });
+
+    const req = {
+      params: {
+        id: 1,
+      },
+    };
+
+    const statusJsonSpy = sinon.spy();
+
+    const res = {
+      json: sinon.spy(),
+      status: sinon.stub().returns({ json: statusJsonSpy }),
+    };
+
     it("should return a model if found", async () => {
       // Arrange
-      const sandbox = sinon.createSandbox();
-      const req = {
-        params: {
-          id: 1,
-        },
-      };
-      const res = {
-        json: sinon.spy(),
-      };
-
       mongoose.Model.findById = sandbox
         .stub()
         .returns(Promise.resolve("banana"));
@@ -34,18 +42,6 @@ describe("restaurantController", () => {
     });
     it("should return an error message if an error occurs", async () => {
       // Arrange
-      const sandbox = sinon.createSandbox();
-      const statusJsonSpy = sinon.spy();
-      const req = {
-        params: {
-          id: 1,
-        },
-      };
-      const res = {
-        json: sinon.spy(),
-        status: sinon.stub().returns({ json: statusJsonSpy }),
-      };
-
       mongoose.Model.findById = sandbox
         .stub()
         .returns(Promise.reject("error message"));
