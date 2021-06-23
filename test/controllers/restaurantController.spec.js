@@ -11,9 +11,15 @@ chai.use(sinonChai);
 
 describe("restaurantController", () => {
   describe("findById", () => {
+    const sandbox = sinon.createSandbox();
+    afterEach(function () {
+      sinon.restore();
+      sandbox.restore();
+    });
+
+    const statusJsonSpy = sinon.spy();
     it("should return a model if found", async () => {
       // Arrange
-      const sandbox = sinon.createSandbox();
       const req = {
         params: {
           id: 1,
@@ -35,8 +41,7 @@ describe("restaurantController", () => {
     });
     it("should return an error message if an error occurs", async () => {
       // Arrange
-      const sandbox = sinon.createSandbox();
-      const statusJsonSpy = sinon.spy();
+
       const req = {
         params: {
           id: 1,
