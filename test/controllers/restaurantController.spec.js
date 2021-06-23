@@ -50,7 +50,7 @@ describe("restaurantController", () => {
       await restaurantController.findById(req, res);
       await console.log("---");
       // Assert
-      expect(res.status).to.have.been.calledWith(404);
+      expect(res.status).to.have.been.calledWith(403);
       expect(statusJsonSpy).to.have.been.calledWith("error message");
     });
   });
