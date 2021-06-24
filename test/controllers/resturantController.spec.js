@@ -46,6 +46,7 @@ describe("resturantController", () => {
       await resturantController.findById(req, res);
       await console.log("----");
       expect(res.status).to.have.been.calledWith(422);
+      expect(statusJsonSpy).to.have.been.calledWith("error message");
     });
   });
 });
