@@ -18,16 +18,19 @@ describe("restaurantController", () => {
     });
 
     const statusJsonSpy = sinon.spy();
+
+    const req = {
+      params: {
+        id: 1,
+      },
+    };
+    const res = {
+      json: sinon.spy(),
+      status: sinon.stub().returns({ json: statusJsonSpy }),
+    };
+
     it("should return a model if found", async () => {
       // Arrange
-      const req = {
-        params: {
-          id: 1,
-        },
-      };
-      const res = {
-        json: sinon.spy(),
-      };
 
       mongoose.Model.findById = sandbox
         .stub()
@@ -41,16 +44,6 @@ describe("restaurantController", () => {
     });
     it("should return an error message if an error occurs", async () => {
       // Arrange
-
-      const req = {
-        params: {
-          id: 1,
-        },
-      };
-      const res = {
-        json: sinon.spy(),
-        status: sinon.stub().returns({ json: statusJsonSpy }),
-      };
 
       mongoose.Model.findById = sandbox
         .stub()

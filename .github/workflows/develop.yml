@@ -25,6 +25,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: echo "This is the develop branch."
-      # - run: npm ci
-      # - run: npm run build --if-present
-      # - run: npm test
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test:mocha
