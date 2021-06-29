@@ -1,35 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import logo from "./logo.svg";
-import "./App.css";
+import Restaurant from "./components/Restaurant/Restaurant";
+import NewRestaurantForm from "./components/NewRestaurantForm/NewRestaurantForm";
 
 function App() {
+  const [restaurants, setRestaurants] = useState([]);
+
   useEffect(() => {
     axios
-      .get("/api/config")
+      .get("/api/restaurants")
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        setRestaurants(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-12">
+          <h1 className="text-center">Summer CICD Restaurants</h1>
+        </div>
+      </div>
+      <div className="row">
+        {restaurants.map((restaurant) => (
+          <Restaurant {...restaurant} key={restaurant._id} />
+        ))}
+      </div>
+      <div className="row">
+        <div className="col-sm-2" />
+        <div className="col-sm-8">
+          <h2 className="text-center">Create New Restaurant</h2>
+          <NewRestaurantForm />
+        </div>
+      </div>
     </div>
   );
 }
