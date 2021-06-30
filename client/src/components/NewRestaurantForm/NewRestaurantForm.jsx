@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 
 const NewRestaurantForm = () => {
   const [name, setName] = useState("");
