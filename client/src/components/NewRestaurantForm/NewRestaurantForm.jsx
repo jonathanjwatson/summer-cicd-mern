@@ -14,6 +14,7 @@ const NewRestaurantForm = () => {
           type="text"
           className="form-control"
           id="name"
+          data-testid="restaurant-name"
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
