@@ -6,15 +6,32 @@ import NewRestaurantForm from "./NewRestaurantForm";
 afterEach(cleanup);
 
 describe("NewRestaurantForm", () => {
-  it("updates the input value on change", () => {
+  it("updates the restaurant name input value on change", () => {
     const { getByTestId } = render(<NewRestaurantForm />);
     const nameInput = getByTestId("restaurant-name");
-    fireEvent.change(nameInput, { target: { value: "Waffle House" } });
-    expect(nameInput.value).toBe("Waffle House");
+    fireEvent.change(nameInput, { target: { value: "Taco Bell" } });
+    expect(nameInput.value).toBe("Taco Bell");
   });
 
-  it("matches snapshot", () => {
-    const { asFragment } = render(<NewRestaurantForm />);
-    expect(asFragment()).toMatchSnapshot();
+  it("updates the address input value on change", () => {
+    const { getByTestId } = render(<NewRestaurantForm />);
+    const addressInput = getByTestId("address");
+    fireEvent.change(addressInput, { target: { value: "1234 Main Street" } });
+    expect(addressInput.value).toBe("1234 Main Street");
   });
+
+  it("updates the phone number input value on change", () => {
+    const { getByTestId } = render(<NewRestaurantForm />);
+    const phoneInput = getByTestId("phone-number");
+    fireEvent.change(phoneInput, { target: { value: "555-555-5555" } });
+    expect(phoneInput.value).toBe("555-555-5555");
+  });
+
+  it("updates the cuisine type input value on change", () => {
+    const { getByTestId } = render(<NewRestaurantForm />);
+    const cuisineInput = getByTestId("cuisine-type");
+    fireEvent.change(cuisineInput, { target: { value: "Fast food" } });
+    expect(cuisineInput.value).toBe("Fast food");
+  });
+
 });
