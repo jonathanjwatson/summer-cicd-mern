@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 
 const NewRestaurantForm = () => {
   const [name, setName] = useState("");
@@ -14,6 +13,7 @@ const NewRestaurantForm = () => {
           type="text"
           className="form-control"
           id="name"
+          data-testid="restaurant-name"
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}

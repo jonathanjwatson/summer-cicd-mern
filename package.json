@@ -13,6 +13,7 @@
     "heroku-postbuild": "npm run build",
     "lint": "eslint . --ext .js,.jsx",
     "test:mocha": "mocha 'test/**/*.spec.js'",
+    "test:jest": "cd client && npm run test:jest",
     "coverage": "nyc npm run test:mocha"
   },
   "repository": {
