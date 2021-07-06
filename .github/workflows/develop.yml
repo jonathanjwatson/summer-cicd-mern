@@ -4,8 +4,6 @@
 name: Develop Workflow
 
 on:
-  push:
-    branches: [develop]
   pull_request:
     branches: [develop]
 
@@ -29,3 +27,4 @@ jobs:
       - run: npm run lint
       # - run: npm run test:mocha
       - run: npm run coverage
+      - run: npm run test:jest
