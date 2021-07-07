@@ -13,11 +13,8 @@
     "heroku-postbuild": "npm run build",
     "lint": "eslint . --ext .js,.jsx",
     "test:mocha": "mocha 'test/**/*.spec.js'",
-<<<<<<< HEAD
-=======
     "test:jest": "cd client && npm run test:jest",
     "test:postman": "concurrently \"node server.js\" \"cd postmanTests && newman run Summer-CICD.postman_collection.json --delay-request 50 -r cli, json -e Localhost.postman_environment.json\"",
->>>>>>> e5b7e73a18feda87a2991d7243ab08b46ec07c90
     "coverage": "nyc npm run test:mocha"
   },
   "repository": {
