@@ -2,7 +2,9 @@
 
 exports[`NewRestaurantForm matches snapshot 1`] = `
 <DocumentFragment>
-  <form>
+  <form
+    data-testid="restaurant-form"
+  >
     <div
       class="mb-3"
     >

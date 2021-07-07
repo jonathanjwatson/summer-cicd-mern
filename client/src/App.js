@@ -7,6 +7,10 @@ function App() {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
+    getRestaurants();
+  }, []);
+
+  const getRestaurants = () => {
     axios
       .get("/api/restaurants")
       .then((response) => {
@@ -16,7 +20,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
   return (
     <div className="container">
       <div className="row">
@@ -33,7 +37,7 @@ function App() {
         <div className="col-sm-2" />
         <div className="col-sm-8">
           <h2 className="text-center">Create New Restaurant</h2>
-          <NewRestaurantForm />
+          <NewRestaurantForm getRestaurants={getRestaurants} />
         </div>
       </div>
     </div>
