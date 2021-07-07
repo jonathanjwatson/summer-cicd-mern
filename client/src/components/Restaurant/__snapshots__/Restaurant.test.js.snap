@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Restaurant matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="col-sm-4"
+  >
+    <h2
+      class="text-center"
+    >
+      Olive Garden
+    </h2>
+    <p>
+      1313 Mockingbird Lane
+    </p>
+    <p>
+      888-888-8888
+    </p>
+    <p>
+      Italian
+    </p>
+  </div>
+</DocumentFragment>
+`;
