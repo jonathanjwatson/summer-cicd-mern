@@ -9,9 +9,15 @@
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
+    "seed": "node seeds/restaurantSeeds.js",
     "heroku-postbuild": "npm run build",
     "lint": "eslint . --ext .js,.jsx",
     "test:mocha": "mocha 'test/**/*.spec.js'",
+<<<<<<< HEAD
+=======
+    "test:jest": "cd client && npm run test:jest",
+    "test:postman": "concurrently \"node server.js\" \"cd postmanTests && newman run Summer-CICD.postman_collection.json --delay-request 50 -r cli, json -e Localhost.postman_environment.json\"",
+>>>>>>> e5b7e73a18feda87a2991d7243ab08b46ec07c90
     "coverage": "nyc npm run test:mocha"
   },
   "repository": {
@@ -37,6 +43,10 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "mocha": "^9.0.1",
+<<<<<<< HEAD
+=======
+    "newman": "^5.2.4",
+>>>>>>> e5b7e73a18feda87a2991d7243ab08b46ec07c90
     "nodemon": "^2.0.7",
     "nyc": "^15.1.0",
     "prettier": "^2.3.1",
