@@ -129,7 +129,7 @@ describe("restaurantController", () => {
         .stub()
         .returns(Promise.resolve("new model"));
       await restaurantController.create(req, res);
-      expect(res.json).to.have.been.calledWith("new model");
+      expect(statusJsonSpy).to.have.been.calledWith("new model");
     });
     it("should return an error message if an error occurs", async () => {
       mongoose.Model.create = sandbox
