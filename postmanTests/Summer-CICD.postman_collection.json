@@ -1,12 +1,26 @@
 {
 	"info": {
-		"_postman_id": "42ce0dcf-3bc0-4072-8fe2-6ffd344ebaf8",
+		"_postman_id": "58ce5245-567c-4610-ae55-3e562977ec94",
 		"name": "Summer-CICD",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "GET Restaurants",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -31,10 +45,23 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Your test name\", function () {",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"_id exists & db created\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData._id).to.exist;",
-							"    pm.environment.set(\"_id\", jsonData._id)",
+							"    if(jsonData._id){",
+							"        pm.environment.set(\"_id\",jsonData._id)",
+							"    }",
+							"});",
+							"",
+							"const name = pm.environment.get(\"name\")",
+							"",
+							"pm.test(\"db created with var name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(name);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -46,7 +73,48 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Bubba Gump Shrimp\",\n    \"address\": \"1313 Mockingbird Lane\",\n    \"phone\": \"555-555-5555\",\n    \"cuisine\": \"Seafood\"\n}",
+					"raw": "{\n    \"name\": \"{{name}}\",\n    \"address\": \"1313 Mockingbird Lane\",\n    \"phone\": \"555-555-5555\",\n    \"cuisine\": \"Seafood\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/api/restaurants",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"restaurants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE 422 error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 422 json without name\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"address\": \"1313 Mockingbird Lane\",\r\n    \"phone\": \"555-555-5555\",\r\n    \"cuisine\": \"Seafood\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -95,6 +163,202 @@
 						"api",
 						"restaurants",
 						"{{_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET 404 not found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/api/restaurants/404",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"restaurants",
+						"404"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// pm.test(\"_id exists & db created\", function () {\r",
+							"//     var jsonData = pm.response.json();\r",
+							"//     pm.expect(jsonData._id).to.exist;\r",
+							"//     if(jsonData._id){\r",
+							"//         pm.environment.set(\"_id\",jsonData._id)\r",
+							"//     }\r",
+							"// });\r",
+							"\r",
+							"pm.test(\"name is updated\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"updated name\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"updated name\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/api/restaurants/{{_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"restaurants",
+						"{{_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT 422 Error (update route error check)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 422\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/api/restaurants/422",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"restaurants",
+						"422"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Remove Restaurant by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"_id exists & removed\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._id).to.exist;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/api/restaurants/{{_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"restaurants",
+						"{{_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE 422 Error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 422\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/api/restaurants/422",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"restaurants",
+						"422"
 					]
 				}
 			},

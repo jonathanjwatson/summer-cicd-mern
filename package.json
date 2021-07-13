@@ -15,6 +15,7 @@
     "test:mocha": "mocha 'test/**/*.spec.js'",
     "test:jest": "cd client && npm run test:jest",
     "test:postman": "concurrently \"node server.js\" \"cd postmanTests && newman run Summer-CICD.postman_collection.json --delay-request 50 -r cli, json -e Localhost.postman_environment.json\"",
+    "test:newman": "node newman.js",
     "coverage": "nyc npm run test:mocha"
   },
   "repository": {
