@@ -14,7 +14,9 @@
     "lint": "eslint . --ext .js,.jsx",
     "test:mocha": "mocha 'test/**/*.spec.js'",
     "test:jest": "cd client && npm run test:jest",
-    "test:postman": "concurrently \"node server.js\" \"cd postmanTests && newman run Summer-CICD.postman_collection.json --delay-request 50 -r cli, json -e Localhost.postman_environment.json\"",
+    "test:postman": "cd postmanTests && newman run Summer-CICD.postman_collection.json --delay-request 50 -r cli, json -e Localhost.postman_environment.json",
+    "test:integration": "start-server-and-test start http://localhost:3001 test:postman",
+    "pretest:integration": "npm run build && npm run seed",
     "coverage": "nyc npm run test:mocha"
   },
   "repository": {
@@ -45,6 +47,7 @@
     "nyc": "^15.1.0",
     "prettier": "^2.3.1",
     "sinon": "^11.1.1",
-    "sinon-chai": "^3.7.0"
+    "sinon-chai": "^3.7.0",
+    "start-server-and-test": "^1.12.6"
   }
 }
