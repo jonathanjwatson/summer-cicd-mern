@@ -28,7 +28,7 @@ function App() {
           <h1 className="text-center">Summer CICD Restaurants</h1>
         </div>
       </div>
-      <div className="row">
+      <div className="row" id="restaurants-display">
         {restaurants.map((restaurant) => (
           <Restaurant {...restaurant} key={restaurant._id} />
         ))}
