@@ -18,7 +18,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:jest": "CI=true react-scripts test --env=jsdom --coverage"
+    "test:jest": "CI=true react-scripts test --env=jsdom --coverage",
+    "test:cypress": "cypress run",
+    "seed": "cd .. && npm run seed"
   },
   "eslintConfig": {
     "extends": [
@@ -37,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^7.7.0"
   }
 }

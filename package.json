@@ -17,7 +17,10 @@
     "test:postman": "cd postmanTests && newman run Summer-CICD.postman_collection.json --delay-request 50 -r cli, json -e Localhost.postman_environment.json",
     "test:integration": "start-server-and-test start http://localhost:3001 test:postman",
     "pretest:integration": "npm run build && npm run seed",
-    "coverage": "nyc npm run test:mocha"
+    "coverage": "nyc npm run test:mocha",
+    "test:cypress": "start-server-and-test start http://localhost:3001 cy:run",
+    "pretest:cypress": "npm run build && npm run seed",
+    "cy:run": "cd client && npm run test:cypress"
   },
   "repository": {
     "type": "git",
