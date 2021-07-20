@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormInput matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-3"
+  >
+    <label
+      class="form-label"
+      for="restaurant-name"
+    >
+      Name
+    </label>
+    <input
+      class="form-control"
+      id="restaurant-name"
+      name="restaurant-name"
+      type="text"
+      value=""
+    />
+  </div>
+</DocumentFragment>
+`;
