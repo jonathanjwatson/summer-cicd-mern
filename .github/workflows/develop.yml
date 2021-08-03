@@ -37,3 +37,5 @@ jobs:
       # - run: npm run test:cypress
       - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
         uses: gonuit/heroku-docker-deploy@v1.3.3
+        with: 
+          email: ${{ secrets.HEROKU_EMAIL }}
