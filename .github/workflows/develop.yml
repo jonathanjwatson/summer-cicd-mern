@@ -23,18 +23,18 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      # - name: Start MongoDB
-      #   uses: supercharge/mongodb-github-action@1.6.0
-      #   with:
-      #     mongodb-version: ${{ matrix.mongodb-version }}
-      # - run: echo "This is the develop branch."
-      # - run: npm ci
-      # - run: npm run lint
-      # # - run: npm run test:mocha
-      # - run: npm run coverage
-      # - run: npm run test:jest
-      # - run: npm run test:integration
-      # - run: npm run test:cypress
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.6.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+      - run: echo "This is the develop branch."
+      - run: npm ci
+      - run: npm run lint
+      # - run: npm run test:mocha
+      - run: npm run coverage
+      - run: npm run test:jest
+      - run: npm run test:integration
+      - run: npm run test:cypress
       - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
         uses: gonuit/heroku-docker-deploy@v1.3.3
         with: 
