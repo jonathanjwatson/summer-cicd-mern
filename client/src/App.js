@@ -25,7 +25,7 @@ function App() {
     <div className="container">
       <div className="row">
         <div className="col-sm-12">
-          <h1 className="text-center">Summer CICD Restaurants</h1>
+          <h1 className="text-center">Summer CICD Restaurants - Develop Test</h1>
         </div>
       </div>
       <div className="row" id="restaurants-display">
