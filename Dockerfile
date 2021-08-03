@@ -15,6 +15,7 @@ RUN npm install
 # Bundle app source
 COPY . /usr/src/app
 RUN cd /usr/src/app/client
+RUN npm install
 RUN npm run-script build
 
 
