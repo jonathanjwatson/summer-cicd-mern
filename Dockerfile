@@ -12,10 +12,12 @@ COPY package.json /usr/src/app/
 RUN npm install
 # If you are building your code for production
 # RUN npm ci --only=production
-RUN npm run-script build
-
 # Bundle app source
 COPY . /usr/src/app
+RUN cd /usr/src/app/client
+RUN npm run-script build
+
+
 
 
 CMD [ "npm", "start" ]
